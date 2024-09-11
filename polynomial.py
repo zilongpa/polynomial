@@ -5,6 +5,9 @@ class X:
     def __repr__(self):
         return "X"
 
+    def evaluate(self, x):
+        return x
+
 
 class Int:
     def __init__(self, i):
@@ -12,6 +15,9 @@ class Int:
 
     def __repr__(self):
         return str(self.i)
+
+    def evaluate(self, x):
+        return self.i
 
 
 class Add:
@@ -21,6 +27,9 @@ class Add:
 
     def __repr__(self):
         return repr(self.p1) + " + " + repr(self.p2)
+
+    def evaluate(self, x):
+        return self.p1.evaluate(x) + self.p2.evaluate(x)
 
 
 class Mul:
@@ -36,6 +45,9 @@ class Mul:
         if isinstance(self.p2, Add):
             return repr(self.p1) + " * ( " + repr(self.p2) + " )"
         return repr(self.p1) + " * " + repr(self.p2)
+
+    def evaluate(self, x):
+        return self.p1.evaluate(x) * self.p2.evaluate(x)
 
 
 poly = Add(Add(Int(4), Int(3)), Add(
